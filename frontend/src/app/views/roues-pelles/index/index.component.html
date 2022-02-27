@@ -1,0 +1,75 @@
+<app-composant-create [InputRouepelle]="rouePelleSelectionner" [cacherRouePelle]="true"></app-composant-create>
+<h1 class="h3 mb-3">Roues Pelles</h1>
+<button type="submit" class="btn btn-primary my-3" (click)="create()">Nouvelle</button>
+<app-alert [ConfigAlert]="configAlert"></app-alert>
+<div class="row">
+  <div class="col-12 col-md-4">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title mb-0" *ngIf="creating">Nouvelle Roue Pelle</h5>
+        <h5 class="card-title mb-0" *ngIf="!creating">Modifier Roue Pelle</h5>
+      </div>
+      <div class="card-body">
+        <form method="post" (ngSubmit)="storeOrUpdate()">
+          <label for="">Numero</label>
+          <input type="text" class="form-control" name="numero" [(ngModel)]="createEditRoue.numero" required/>
+          <span class="text-danger">{{errors.numero}}</span> <br>
+
+          <label for="" class="">Immatriculation</label>
+          <input type="text" class="form-control" name="numPlaque" [(ngModel)]="createEditRoue.numPlaque" />
+          <span class="text-danger">{{errors.numPlaque}}</span> <br>
+
+          <label for=""  class="">Date de fabrication</label>
+          <input type="date" class="form-control" name="dateFab"  [(ngModel)]="createEditRoue.dateFab" />
+          <span class="text-danger">{{errors.dateFab}}</span>
+          <br>
+
+          <button type="submit" class="btn btn-primary mt-3" *ngIf="creating">Enregistre</button>
+          <button type="submit" class="btn btn-primary mt-3" *ngIf="!creating">Modifier</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title mb-0">Liste des roues pelles</h5>
+      </div>
+      <div class="card-body">
+        <table class="table table table-striped table-bordered" id="">
+          <thead>
+            <tr>
+              <th scope="col">Numero </th>
+              <th scope="col">Immatriculation</th>
+              <th scope="col">Date Fab</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let roue of listeRoues">
+              <td>{{roue.numero}}</td>
+              <td>{{roue.numPlaque}}</td>
+              <td>{{roue.dateFab}}</td>
+              <td>
+                <div class="dropdown">
+                  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Actions
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <button class="dropdown-item" (click)="edit(roue)">Modifier</button>
+                    <button class="dropdown-item" (click)="delete(roue.id)">Supprimer</button>
+                    <button class="dropdown-item" (click)="ajouterComposants(roue)" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Ajouter un composant</button>
+                    <button class="dropdown-item" routerLink="">Liste des composants</button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+
+          </tbody>
+        
+        </table>
+      </div>
+    </div>
+</div>
