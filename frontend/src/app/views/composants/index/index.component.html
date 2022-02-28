@@ -1,11 +1,11 @@
-<app-composant-create (AfterComposantStore)="getAllComposants()"></app-composant-create>
-<h1 class="h3 mb-3">Composant</h1>
+<app-composant-create (AfterComposantStore)="getAllComposants()" [editComposant]="editComp"></app-composant-create>
+<h1 class="h3 mb-3">Composants</h1>
 <button type="submit" class="btn btn-primary my-3" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Nouveau</button>
-<button type="submit" class="btn btn-primary my-3 mx-2" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Imprimer</button>
+<button type="submit" class="btn btn-primary my-3 mx-2" (click)="generatePdf()">Imprimer</button>
 <app-alert [ConfigAlert]="configAlert"></app-alert>
 <div class="row">
   <div class="col-12 col-md-12">
-    <label for="">Veuillez choisir une roue pelles</label>
+    <label for="">Veuillez choisir une roue pelle</label>
     <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="searchIdRoue"  (ngModelChange)="changeSearch()">
       <option [ngValue]="-1">Tous les roues pelles</option>
       <option *ngFor="let roue of listeRoues" [ngValue]="roue.id" >{{roue.numPlaque}}</option>
@@ -22,9 +22,9 @@
         <table class="table table table-striped table-bordered" id="">
           <thead>
             <tr>
-              <th scope="col">Numero </th>
-              <th scope="col">Quantite</th>
-              <th scope="col">Roupelle</th>
+              <th scope="col">Numéro </th>
+              <th scope="col">Quantité</th>
+              <th scope="col">Roue Pelle</th>
               <th scope="col">Actions</th>
             </tr>
           </thead>
@@ -32,15 +32,16 @@
             <tr  *ngFor="let composant of listeComposants">
               <td>{{composant.numCom}}</td>
               <td>{{composant.qte}}</td>
-              <td>{{composant.rouePelle.numPlaque}}</td>
+              <td>Numéro : {{composant.rouePelle.numPlaque}} | Plaque:{{composant.rouePelle.numPlaque}}</td>
               <td>
                 <div class="dropdown">
-                  <button class="btn btn-primary" (click)="delete(composant.id)">Supprimer</button>
+                  <!-- <button type="submit" class="btn btn-primary" (click)="edit(composant)" data-toggle="modal" data-target="#editComposantModal" data-whatever="@getbootstrap">Modifier</button> -->
+                  <button class="btn btn-danger mx-2" (click)="delete(composant.id)">Supprimer</button>
 
                 </div>
               </td>
             </tr>
-     
+
 
 
           </tbody>

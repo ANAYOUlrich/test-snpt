@@ -11,22 +11,52 @@
         <app-alert [ConfigAlert]="configAlert"></app-alert>
         <form  method="post" (ngSubmit)="store()">
           <div class="form-group">
-            <label for="numCom" class="col-form-label">Numero du composant:</label>
+            <label for="numCom" class="col-form-label">Numéro du composant:</label>
             <input type="text" required  class="form-control" id="numCom" name="numCom" [(ngModel)]="createComposant.numCom">
+            <span class="text-danger">{{errors.numCom}}</span>
           </div>
           <div class="form-group">
-            <label for="qte" class="col-form-label">Quantite du composant:</label>
+            <label for="qte" class="col-form-label">Quantité du composant:</label>
             <input type="number"  min="1" required class="form-control" id="qte" name="qte" [(ngModel)]="createComposant.qte">
+            <span class="text-danger">{{errors.qte}}</span>
           </div>
 
           <div class="form-group" *ngIf="!cacherRouePelle">
             <label for="rouePelle" class="col-form-label">Roue Pelle:</label>
             <select class="form-control" id="rouePelle" name="rouePelle" [(ngModel)]="createComposant.rouePelle" required>
-              <option *ngFor="let roue of listeRoues" [ngValue]="roue" >Numero:{{roue.numero}} | Plaque:{{roue.numPlaque}}</option>
+              <option *ngFor="let roue of listeRoues" [ngValue]="roue" >Numéro:{{roue.numero}} | Plaque:{{roue.numPlaque}}</option>
             </select>
-            <span class="text-danger">{{searchError}}</span> <br>
+            <span class="text-danger">{{errors.rouePelle}}</span>
           </div>
           <button type="Submit" class="btn btn-primary">Enregistrer</button>
+          <button type="reset" class="btn btn-secondary mx-2" data-dismiss="modal" (click)="congurerAlert()">Fermer</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="editComposantModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modifier la composant</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <app-alert [ConfigAlert]="configAlert"></app-alert>
+        <form  method="post" (ngSubmit)="update()">
+
+          <div class="form-group">
+            <label for="qte" class="col-form-label">Nouvelle Quantité:</label>
+            <input type="number"  min="1" required class="form-control" id="qte" name="qte" [(ngModel)]="createComposant.qte">
+            <span class="text-danger">{{errors.qte}}</span>
+          </div>
+
+          <button type="Submit" class="btn btn-primary">Modifier</button>
           <button type="button" class="btn btn-secondary mx-2" data-dismiss="modal" (click)="congurerAlert()">Fermer</button>
         </form>
       </div>

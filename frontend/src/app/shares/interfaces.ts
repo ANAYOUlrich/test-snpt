@@ -11,3 +11,10 @@ export interface RouePelleErrorMassage {
   dateFab:string;
 }
 
+export interface ComposantErrorMassage {
+  success:boolean;
+  numCom:string;
+  qte:string;
+  rouePelle:string;
+}
+

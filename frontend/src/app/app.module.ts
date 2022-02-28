@@ -5,7 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { BaseComponent } from './views/layouts/base.component';
 
 import { routes } from './app.routes';
 import { FooterComponent } from './views/layouts/includes/footer/footer.component';
@@ -16,13 +15,11 @@ import { IndexComposantComponent } from './views/composants/index/index.componen
 import { CreateEditComponent } from './views/roues-pelles/create-edit/create-edit.component';
 import { ListComponent } from './views/roues-pelles/list/list.component';
 import { CreateComposantComponent } from './views/composants/create/create.component';
-import { SearchComponent } from './views/composants/search/search.component';
 import { AlertComponent } from './views/layouts/includes/alert/alert.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BaseComponent,
     FooterComponent,
     NavbarComponent,
     HeadbarComponent,
@@ -31,7 +28,6 @@ import { AlertComponent } from './views/layouts/includes/alert/alert.component';
     CreateEditComponent,
     ListComponent,
     CreateComposantComponent,
-    SearchComponent,
     AlertComponent,
   ],
   imports: [

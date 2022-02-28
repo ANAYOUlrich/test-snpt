@@ -70,7 +70,6 @@ export class IndexRouePelleComponent implements OnInit {
     console.log('store begin')
     this.congurerAlert();
     this.errors = this.rouePelleService.validation(this.createEditRoue, this.listeRoues);
-    console.log(this.errors.success );
     if(this.errors.success==true){
     this.rouePelleService.store(this.createEditRoue).subscribe(
       result => {
@@ -78,6 +77,7 @@ export class IndexRouePelleComponent implements OnInit {
         if(result.error=="success"){
           this.createEditRoue = new RouePelle();
           this.congurerAlert(true,"Roue pelle enregistrer","success");
+          this.resetErrors()
         }
         else this.congurerAlert(true,"Roue pelle non enregistrer","error");
         console.log('Ok');
@@ -105,6 +105,7 @@ export class IndexRouePelleComponent implements OnInit {
           this.getAllRoues();
           if(result.error=="success") this.congurerAlert(true,"Roue pelle modifier","success");
           else this.congurerAlert(true,"Roue pelle non modifier","error");
+          this.resetErrors()
           console.log('Ok');
         }
       )
